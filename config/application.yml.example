@@ -1,9 +1,3 @@
 DATABASE_USER: postgres
 DATABASE_PASSWORD: password
 DATABASE_HOST: localhost
-
-development:
-  DATABASE_NAME: eatiplaner-plan-service
-
-test:
-  DATABASE_NAME: eatiplaner-plan-service-test
