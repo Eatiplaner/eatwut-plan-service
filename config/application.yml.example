@@ -1,12 +1,9 @@
-default: &default
-  DATABASE_USER: postgres
-  DATABASE_PASSWORD: password
-  DATABASE_HOST: localhost
-  DATABASE_NAME: eatiplaner-plan-service
+DATABASE_USER: postgres
+DATABASE_PASSWORD: password
+DATABASE_HOST: localhost
 
 development:
-  <<: *default
+  DATABASE_NAME: eatiplaner-plan-service
 
 test:
   DATABASE_NAME: eatiplaner-plan-service-test
-  <<: *default

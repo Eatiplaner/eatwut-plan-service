@@ -72,7 +72,13 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'faker', '~> 2.11'
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+end
+
+group :development, :test do
+  gem "rspec-rails"
+  gem 'factory_bot_rails'
 end

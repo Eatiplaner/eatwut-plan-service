@@ -16,7 +16,7 @@ test:
 
 production:
   <<: *default
-  host: <%= Rails.application.credentials.database[:host] %>
-  username: <%= Rails.application.credentials.database[:user] %>
-  password: <%= Rails.application.credentials.database[:password] %>
-  database: <%= Rails.application.credentials.database[:name] %>
+  host: <%= Rails.application.credentials.database.try(:[], 'host') %>
+  username: <%= Rails.application.credentials.database.try(:[], 'user') %>
+  password: <%= Rails.application.credentials.database.try(:[], 'password') %>
+  database: <%= Rails.application.credentials.database.try(:[], 'name') %>
