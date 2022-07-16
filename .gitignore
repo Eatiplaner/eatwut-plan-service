@@ -6,6 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
+node_modules
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -33,3 +34,12 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+/config/credentials/development.key
+
+/config/credentials/production.key
+
+/config/credentials/environment.key
+
+# Ignore application configuration
+/config/application.yml
