@@ -23,6 +23,13 @@ Things you may want to cover:
 
 - ...
 
-## Configuration
+### Setup Git hooks:
+
+```bash
+pnpm install
+pnpm run prepare
+```
+
+### Configuration
 
 - Create `config/application.yml` by copying from `config/application.yml.example` and make any change appropriate to your setup.
