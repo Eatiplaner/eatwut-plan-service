@@ -1,27 +1,14 @@
-# README
+# Eatiplaner Plan Service
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Requirements
 
-Things you may want to cover:
+- Rails 7.0.3
+- Ruby 3.1.2
+- PostgreSQL
 
-- Ruby version
+### Configuration
 
-- System dependencies
-
-- Configuration
-
-- Database creation
-
-- Database initialization
-
-- How to run the test suite
-
-- Services (job queues, cache servers, search engines, etc.)
-
-- Deployment instructions
-
-- ...
+- Create `config/application.yml` by copying from `config/application.yml.example` and make any change appropriate to your setup.
 
 ### Setup Git hooks:
 
@@ -30,6 +17,40 @@ pnpm install
 pnpm run prepare
 ```
 
-### Configuration
+### Installation
 
-- Create `config/application.yml` by copying from `config/application.yml.example` and make any change appropriate to your setup.
+Inside project root folder, execute:
+
+```
+$ bundle
+```
+
+Database creation:
+
+```
+$ rake db:setup
+```
+
+Run migrations:
+
+```
+$ rake db:migrate
+```
+
+### Run Rubocop
+
+```
+$ bundle exec ubocop
+```
+
+or
+
+```
+$ rubocop
+```
+
+### Run Rspec
+
+```
+$ bundle exec rspec
+```
