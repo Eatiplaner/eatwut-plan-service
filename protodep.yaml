@@ -1,0 +1,9 @@
+source: Eatiplan-Project/eatiplan-grpc-proto
+branch: main
+outpb: app/proto
+token_key: GH_PROTO_REPO_TOKEN
+dependencies:
+  - plan/category
+command: grpc_tools_ruby_protoc --ruby_out=. --grpc_out=. $outpb/$dependency.proto
+
+
