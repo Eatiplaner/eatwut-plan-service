@@ -71,7 +71,6 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem 'faker', '~> 2.11'
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'webdrivers'
@@ -80,4 +79,10 @@ end
 group :development, :test do
   gem "rspec-rails"
   gem 'factory_bot_rails'
+  gem 'ffaker', '~> 2.12'
+  gem 'rspec-core'
+  gem 'rspec-expectations'
+  gem 'rspec-mocks'
+  gem 'rspec-support'
+  gem 'shoulda-matchers'
 end
