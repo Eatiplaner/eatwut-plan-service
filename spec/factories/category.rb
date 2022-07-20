@@ -6,7 +6,7 @@ FactoryBot.define do
 
     trait :with_sub_categories do
       after(:create) do |category|
-        category.subcategories = FactoryBot.create_list(:product_category, 2)
+        category.subcategories = FactoryBot.create_list(:category, 2)
       end
     end
   end

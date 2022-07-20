@@ -43,3 +43,12 @@ node_modules
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore proto file
+app/proto/*.proto
+
+# Ignore env
+.env
+
+# Ignore byebug
+.byebug_history
