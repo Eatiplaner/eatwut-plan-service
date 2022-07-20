@@ -4,13 +4,13 @@
 require 'grpc'
 
 module Plan
-  module Category
+  module CategoryService
     class Service
       include ::GRPC::GenericService
 
       self.marshal_class_method = :encode
       self.unmarshal_class_method = :decode
-      self.service_name = 'plan.Category'
+      self.service_name = 'plan.CategoryService'
 
       rpc :GetCategories, ::Google::Protobuf::Empty, ::Plan::GetCategoriesResp
     end

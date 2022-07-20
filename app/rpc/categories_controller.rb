@@ -1,5 +1,5 @@
 class CategoriesController < Gruf::Controllers::Base
-  bind Plan::Category::Service
+  bind Plan::CategoryService::Service
 
   def get_categories
     parent_categories = Category
