@@ -6,7 +6,7 @@ class EatPlan < ApplicationRecord
   has_many :categories, through: :eat_plan_categories
 
   ################################## SETTINGS ##################################
-  accepts_nested_attributes_for :categories
+  include GeneratableProtoData
 
   enum(
     status: {
@@ -27,6 +27,7 @@ class EatPlan < ApplicationRecord
 
   ################################# VALIDATIONS ################################
   validates :name, :user_id, presence: true
+  validates :name, uniqueness: { scope: :user_id }
 
-  validates :duration_value, :meals_per_day, numericality: { greater_than: 0 }
+  validates :duration_value, :meals_per_day, numericality: { greater_than: 0 }, allow_nil: true
 end

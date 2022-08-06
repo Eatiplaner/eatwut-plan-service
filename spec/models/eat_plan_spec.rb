@@ -29,19 +29,25 @@ RSpec.describe EatPlan do
   end
 
   describe 'validations' do
+    let(:eat_plan) { build(:eat_plan, user_id: 2) }
+
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:user_id) }
+
+    it { expect(eat_plan).to validate_uniqueness_of(:name).scoped_to(:user_id) }
 
     describe 'duration_value' do
       it { is_expected.not_to allow_value(-1).for(:duration_value) }
       it { is_expected.not_to allow_value(0).for(:duration_value) }
       it { is_expected.to allow_value(5).for(:duration_value) }
+      it { is_expected.to allow_value(nil).for(:duration_value) }
     end
 
     describe 'meals_per_day' do
       it { is_expected.not_to allow_value(-1).for(:meals_per_day) }
       it { is_expected.not_to allow_value(0).for(:meals_per_day) }
       it { is_expected.to allow_value(3).for(:meals_per_day) }
+      it { is_expected.to allow_value(nil).for(:meals_per_day) }
     end
   end
 end

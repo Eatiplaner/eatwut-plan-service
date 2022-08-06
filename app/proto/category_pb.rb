@@ -8,11 +8,11 @@ require 'google/protobuf/empty_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("app/proto/category.proto", syntax: :proto3) do
     add_message "plan.SubCategory" do
-      optional :id, :uint32, 1
+      optional :id, :uint64, 1
       optional :name, :string, 2
     end
     add_message "plan.ParentCategory" do
-      optional :id, :uint32, 1
+      optional :id, :uint64, 1
       optional :name, :string, 2
       repeated :subcategories, :message, 3, "plan.SubCategory"
     end

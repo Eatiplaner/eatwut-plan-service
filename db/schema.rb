@@ -43,6 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_06_051759) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_eat_plans_on_name"
+    t.index ["user_id", "name"], name: "index_eat_plans_on_user_id_and_name", unique: true
   end
 
   add_foreign_key "categories", "categories", column: "parent_category_id"

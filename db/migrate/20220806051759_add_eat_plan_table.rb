@@ -10,6 +10,8 @@ class AddEatPlanTable < ActiveRecord::Migration[7.0]
 
       t.bigint :user_id, null: false
 
+      t.index %i[user_id name], unique: true
+
       t.timestamps
     end
 
