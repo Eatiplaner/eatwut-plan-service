@@ -13,6 +13,8 @@ module Plan
       self.service_name = 'plan.EatPlanService'
 
       rpc :CreateEatPlan, ::Plan::CreateEatPlanReq, ::Plan::CreateEatPlanResp
+      rpc :PublishEatPlan, ::Plan::ChangeStatusEatPlanReq, ::Google::Protobuf::Empty
+      rpc :DraftEatPlan, ::Plan::ChangeStatusEatPlanReq, ::Google::Protobuf::Empty
     end
 
     Stub = Service.rpc_stub_class

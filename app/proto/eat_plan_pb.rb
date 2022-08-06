@@ -3,6 +3,7 @@
 
 require 'google/protobuf'
 
+require 'google/protobuf/empty_pb'
 require 'google/protobuf/timestamp_pb'
 
 Google::Protobuf::DescriptorPool.generated_pool.build do
@@ -19,6 +20,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :meals_per_day, :uint32, 5, json_name: "meals_per_day"
       optional :user_id, :uint64, 6, json_name: "user_id"
       repeated :category_ids, :uint64, 7, json_name: "category_ids"
+    end
+    add_message "plan.ChangeStatusEatPlanReq" do
+      optional :id, :uint64, 1
     end
     add_message "plan.EatPlan" do
       optional :id, :uint64, 1
@@ -42,6 +46,7 @@ end
 module Plan
   EatPlanCategoryResp = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("plan.EatPlanCategoryResp").msgclass
   CreateEatPlanReq = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("plan.CreateEatPlanReq").msgclass
+  ChangeStatusEatPlanReq = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("plan.ChangeStatusEatPlanReq").msgclass
   EatPlan = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("plan.EatPlan").msgclass
   CreateEatPlanResp = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("plan.CreateEatPlanResp").msgclass
 end

@@ -48,7 +48,7 @@ describe EatPlansController do
     end
 
     context 'with invalid params' do
-      it 'create plan unsuccessfully' do
+      it 'raise invalid argument error' do
         expect do
           run_rpc(:CreateEatPlan, {
             category_ids: [categories.first.id, categories.second.id],
@@ -60,6 +60,82 @@ describe EatPlansController do
             user_id: "2"
           })
         end.to raise_rpc_error(GRPC::InvalidArgument)
+      end
+    end
+  end
+
+  describe '#publish_eat_plan' do
+    let!(:eat_plan) { create(:eat_plan, :publishable, status:) }
+    let(:status)  { EatPlan.statuses[:draft] }
+
+    context 'with eat plan not found' do
+      it 'raise not found error' do
+        expect do
+          run_rpc(:PublishEatPlan, {
+            id: 100
+          })
+        end.to raise_rpc_error(GRPC::NotFound)
+      end
+    end
+
+    context 'with eat plan already publish' do
+      let(:status) { EatPlan.statuses[:published] }
+
+      it 'raise not implemented error' do
+        expect do
+          run_rpc(:PublishEatPlan, {
+            id: eat_plan.id
+          })
+        end.to raise_rpc_error(GRPC::FailedPrecondition)
+      end
+    end
+
+    context 'with eat plan status is draft' do
+      it 'update status successfully' do
+        run_rpc(:PublishEatPlan, {
+          id: eat_plan.id
+        }) do |resp|
+          expect(resp).to be_a_successful_rpc
+          expect(eat_plan.reload.status).to eq(EatPlan.statuses[:published])
+        end
+      end
+    end
+  end
+
+  describe '#draft_eat_plan' do
+    let!(:eat_plan) { create(:eat_plan, :publishable, status:) }
+    let(:status)  { EatPlan.statuses[:published] }
+
+    context 'with eat plan not found' do
+      it 'raise not found error' do
+        expect do
+          run_rpc(:DraftEatPlan, {
+            id: 100
+          })
+        end.to raise_rpc_error(GRPC::NotFound)
+      end
+    end
+
+    context 'with eat plan already draft' do
+      let(:status) { EatPlan.statuses[:draft] }
+
+      it 'raise not implemented error' do
+        expect do
+          run_rpc(:DraftEatPlan, {
+            id: eat_plan.id
+          })
+        end.to raise_rpc_error(GRPC::FailedPrecondition)
+      end
+    end
+
+    context 'with eat plan status is published' do
+      it 'update status successfully' do
+        run_rpc(:DraftEatPlan, {
+          id: eat_plan.id
+        }) do |resp|
+          expect(resp).to be_a_successful_rpc
+          expect(eat_plan.reload.status).to eq(EatPlan.statuses[:draft])
+        end
       end
     end
   end

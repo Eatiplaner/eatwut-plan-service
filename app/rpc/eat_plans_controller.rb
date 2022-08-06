@@ -19,7 +19,37 @@ class EatPlansController < Gruf::Controllers::Base
     fail!(:internal, :internal, "ERROR: #{e.message}")
   end
 
+  def publish_eat_plan
+    eat_plan = find_eat_plan
+    eat_plan.publish!
+
+    ::Google::Protobuf::Empty.new
+  rescue AASM::InvalidTransition => e
+    set_debug_info(e.message, e.backtrace[0..4])
+    fail!(:failed_precondition, :failed_precondition, "ERROR: #{e.message}")
+  rescue ActiveRecord::RecordNotFound => e
+    set_debug_info(e.message, e.backtrace[0..4])
+    fail!(:not_found, :not_found, "ERROR: #{e.message}")
+  end
+
+  def draft_eat_plan
+    eat_plan = find_eat_plan
+    eat_plan.draft!
+
+    ::Google::Protobuf::Empty.new
+  rescue AASM::InvalidTransition => e
+    set_debug_info(e.message, e.backtrace[0..4])
+    fail!(:failed_precondition, :failed_precondition, "ERROR: #{e.message}")
+  rescue ActiveRecord::RecordNotFound => e
+    set_debug_info(e.message, e.backtrace[0..4])
+    fail!(:not_found, :not_found, "ERROR: #{e.message}")
+  end
+
   private
+
+  def find_eat_plan
+    EatPlan.find(request.message[:id])
+  end
 
   def generate_plan(eat_plan)
     Plan::EatPlan.new(
