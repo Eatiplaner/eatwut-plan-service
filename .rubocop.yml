@@ -9,6 +9,7 @@ AllCops:
     - "config/environments/*"
     - "config/application.rb"
     - "config/puma.rb"
+    - "app/proto/*_pb.rb"
     - "vendor/**/*"
   DisabledByDefault: true
 
