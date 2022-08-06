@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe CategoriesController do
   it 'binds the service correctly' do
-    expect(grpc_bound_service).to eq ::Plan::Category::Service
+    expect(grpc_bound_service).to eq ::Plan::CategoryService::Service
   end
 
   describe '#get_categories' do
