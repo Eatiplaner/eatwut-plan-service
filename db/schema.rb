@@ -39,6 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_06_051759) do
     t.string "duration_metric"
     t.integer "duration_value"
     t.integer "meals_per_day"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_eat_plans_on_name"

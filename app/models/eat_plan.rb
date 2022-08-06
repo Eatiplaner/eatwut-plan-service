@@ -26,7 +26,7 @@ class EatPlan < ApplicationRecord
   )
 
   ################################# VALIDATIONS ################################
-  validates :name, presence: true
+  validates :name, :user_id, presence: true
 
   validates :duration_value, :meals_per_day, numericality: { greater_than: 0 }
 end

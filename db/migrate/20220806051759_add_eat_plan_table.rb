@@ -8,6 +8,8 @@ class AddEatPlanTable < ActiveRecord::Migration[7.0]
       t.integer :duration_value
       t.integer :meals_per_day
 
+      t.bigint :user_id, null: false
+
       t.timestamps
     end
 

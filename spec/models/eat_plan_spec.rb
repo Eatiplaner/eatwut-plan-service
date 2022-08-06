@@ -30,6 +30,7 @@ RSpec.describe EatPlan do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:user_id) }
 
     describe 'duration_value' do
       it { is_expected.not_to allow_value(-1).for(:duration_value) }
