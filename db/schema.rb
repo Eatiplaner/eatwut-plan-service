@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_19_134508) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_06_051759) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,5 +23,30 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_19_134508) do
     t.index ["parent_category_id"], name: "index_categories_on_parent_category_id"
   end
 
+  create_table "eat_plan_categories", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.bigint "eat_plan_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id", "eat_plan_id"], name: "index_eat_plan_categories_on_category_id_and_eat_plan_id", unique: true
+    t.index ["eat_plan_id"], name: "index_eat_plan_categories_on_eat_plan_id"
+  end
+
+  create_table "eat_plans", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description"
+    t.string "status", default: "draft"
+    t.string "duration_metric"
+    t.integer "duration_value"
+    t.integer "meals_per_day"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_eat_plans_on_name"
+    t.index ["user_id", "name"], name: "index_eat_plans_on_user_id_and_name", unique: true
+  end
+
   add_foreign_key "categories", "categories", column: "parent_category_id"
+  add_foreign_key "eat_plan_categories", "categories"
+  add_foreign_key "eat_plan_categories", "eat_plans"
 end

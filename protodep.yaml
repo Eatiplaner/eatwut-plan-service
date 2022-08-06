@@ -4,6 +4,7 @@ outpb: app/proto
 token_key: GH_PROTO_REPO_TOKEN
 dependencies:
   - plan/category
+  - plan/eat_plan
 command: grpc_tools_ruby_protoc --ruby_out=. --grpc_out=. $outpb/$dependency.proto
 
 
