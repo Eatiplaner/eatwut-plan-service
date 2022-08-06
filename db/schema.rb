@@ -35,7 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_06_051759) do
   create_table "eat_plans", force: :cascade do |t|
     t.string "name", null: false
     t.string "description"
-    t.string "status"
+    t.string "status", default: "draft"
     t.string "duration_metric"
     t.integer "duration_value"
     t.integer "meals_per_day"

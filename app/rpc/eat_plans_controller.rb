@@ -9,8 +9,11 @@ class EatPlansController < Gruf::Controllers::Base
         data: generate_plan(eat_plan)
       )
     else
-      raise StandardError, eat_plan.errors.full_messages
+      raise ArgumentError, eat_plan.errors.full_messages
     end
+  rescue ArgumentError => e
+    set_debug_info(e.message, e.backtrace[0..4])
+    fail!(:invalid_argument, :invalid_argument, "ERROR: #{e.message}")
   rescue StandardError => e
     set_debug_info(e.message, e.backtrace[0..4])
     fail!(:internal, :internal, "ERROR: #{e.message}")

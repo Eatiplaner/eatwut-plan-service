@@ -3,7 +3,7 @@ class AddEatPlanTable < ActiveRecord::Migration[7.0]
     create_table :eat_plans do |t|
       t.string :name, null: false, index: true
       t.string :description
-      t.string :status
+      t.string :status, default: 'draft'
       t.string :duration_metric
       t.integer :duration_value
       t.integer :meals_per_day
