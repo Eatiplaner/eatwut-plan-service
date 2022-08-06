@@ -6,7 +6,7 @@ require 'google/protobuf'
 require 'google/protobuf/timestamp_pb'
 
 Google::Protobuf::DescriptorPool.generated_pool.build do
-  add_file("app/proto/eat_plan.proto", :syntax => :proto3) do
+  add_file("app/proto/eat_plan.proto", syntax: :proto3) do
     add_message "plan.EatPlanCategoryResp" do
       optional :id, :uint64, 1
       optional :name, :string, 2
