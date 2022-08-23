@@ -91,3 +91,5 @@ group :test do
   gem 'webdrivers'
   gem 'gruf-rspec'
 end
+
+gem "marginalia", "~> 1.11"
