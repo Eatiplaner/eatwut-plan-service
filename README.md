@@ -1,4 +1,4 @@
-# Eatiplaner Plan Service
+# Eatwut Plan Service
 
 ## Requirements
 

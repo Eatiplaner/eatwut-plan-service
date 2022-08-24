@@ -6,5 +6,3 @@ dependencies:
   - plan/category
   - plan/eat_plan
 command: grpc_tools_ruby_protoc --ruby_out=. --grpc_out=. $outpb/$dependency.proto
-
-
